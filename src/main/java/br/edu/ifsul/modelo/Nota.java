@@ -30,13 +30,13 @@ public class Nota implements Serializable{
     @GeneratedValue(generator = "seq_nota",strategy = GenerationType.SEQUENCE)
     private Integer id;
     @NotNull(message = "a nota 1 deve ser informada")
-    @Column(name = "nota1", nullable = false, columnDefinition = "numeric(2,1)")
+    @Column(name = "nota1", nullable = false, columnDefinition = "numeric(4,2)")
     private Double nota1;
     @NotNull(message = "a nota 2 deve ser informada")
-    @Column(name = "nota2", nullable = false, columnDefinition = "numeric(2,1)")
+    @Column(name = "nota2", nullable = false, columnDefinition = "numeric(4,2)")
     private Double nota2;
     @NotNull(message = "a media deve ser informada")
-    @Column(name = "media", nullable = false, columnDefinition = "numeric(2,1)")
+    @Column(name = "media", nullable = false, columnDefinition = "numeric(4,2)")
     private Double media;
     @NotNull(message = "O aluno deve ser informado")
     @ManyToOne

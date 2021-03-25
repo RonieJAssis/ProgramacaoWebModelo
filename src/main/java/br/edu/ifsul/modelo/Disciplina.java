@@ -6,8 +6,10 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,7 +57,7 @@ public class Disciplina implements Serializable{
                             nullable = false), 
             inverseJoinColumns = 
                     @JoinColumn(name = "aluno", referencedColumnName = "id", nullable = false))
-    private List<Aluno> alunos;
+    private Set<Aluno> alunos=new HashSet<>();
     @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL, 
             orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Nota> notas;
@@ -140,14 +142,14 @@ public class Disciplina implements Serializable{
     /**
      * @return the alunos
      */
-    public List<Aluno> getAlunos() {
+    public Set<Aluno> getAlunos() {
         return alunos;
     }
 
     /**
      * @param alunos the alunos to set
      */
-    public void setAlunos(List<Aluno> alunos) {
+    public void setAlunos(Set<Aluno> alunos) {
         this.alunos = alunos;
     }
     
