@@ -5,6 +5,7 @@
  */
 package br.edu.ifsul.testes;
 
+import br.edu.ifsul.modelo.Curso;
 import br.edu.ifsul.modelo.Disciplina;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -36,6 +37,7 @@ public class TestePersistirDisciplina {
         d1.setConhecimentosMinimos("aaaaaaaaaaaaaa");
         d1.setDescricao("aaaaaaaaaaaaaaaaaaaaaa");
         d1.setNome("teste1");
+        d1.setCurso(em.find(Curso.class,1));
         
         
         //d2.setNome("teste2");

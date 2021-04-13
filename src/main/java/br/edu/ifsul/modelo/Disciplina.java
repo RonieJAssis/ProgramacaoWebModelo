@@ -46,7 +46,7 @@ public class Disciplina implements Serializable{
     @Column(name = "descricao", columnDefinition = "text",nullable = false)
     private String descricao;
     @NotNull(message = "a carga horaria deve ser informada")
-    @Column(name = "carga horaria", nullable = false, columnDefinition = "numeric(10,2)")
+    @Column(name = "carga_horaria", nullable = false, columnDefinition = "numeric(10,2)")
     private Double cargaHoraria;
     @Column(name = "conhecimento_minimos", columnDefinition = "text",nullable = false)
     private String conhecimentosMinimos;
@@ -156,6 +156,10 @@ public class Disciplina implements Serializable{
     public void addAlunos(Aluno aluno) {
         this.alunos.add(aluno);
     }
+    
+    public void removerAluno(int index){
+        this.alunos.remove(index);
+    }
 
 
     /**
@@ -176,7 +180,9 @@ public class Disciplina implements Serializable{
         nota.setDisciplina(this);
         this.notas.add(nota);
     }
-    
+    public void removerNotas(int index){
+        this.notas.remove(index);
+    }
     /**
      * @return the curso
      */

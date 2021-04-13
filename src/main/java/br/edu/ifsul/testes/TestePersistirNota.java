@@ -28,15 +28,15 @@ public class TestePersistirNota {
         Nota n1 = new Nota();
         //Nota n2 = em.find(Nota.class,2);
         //Nota n3 = em.find(Nota.class,3);
-        List<Nota>n4=em.createQuery("from Nota").getResultList();
-        for(Nota n:n4){
-            System.out.println(n.getMedia());
-        }
+        //List<Nota>n4=em.createQuery("from Nota").getResultList();
+        //for(Nota n:n4){
+        //    System.out.println(n.getMedia());
+        //}
         n1.setNota1(9.0);
         n1.setNota2(7.5);
         n1.setMedia((n1.getNota1()+n1.getNota2())/2);
         n1.setAluno(em.find(Aluno.class,1));
-        n1.setDisciplina(em.find(Disciplina.class,1));
+        n1.setDisciplina(em.find(Disciplina.class,2));
         //n2.setNota1(8.0);
         //n2.setNota2(6.5);
         //n2.setMedia((n2.getNota1()+n2.getNota2())/2);

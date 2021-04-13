@@ -32,8 +32,8 @@ public class TestePersistirAluno {
         for(Aluno a:a4){
             System.out.println(a.getNome());
         }
-        a1.setNome("teste1");
-        a1.setEmail("teste@teste");
+        a1.setNome("teste1aluno");
+        a1.setEmail("testealuno@teste");
         a1.setNascimento(new GregorianCalendar(2000, Calendar.FEBRUARY, 02));
         //a2.setNome("teste2");
         em.getTransaction().begin();

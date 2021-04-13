@@ -190,6 +190,9 @@ public class Curso implements Serializable{
         disciplina.setCurso(this);
         this.disciplinas.add(disciplina);
     }
+    public void removerDisciplina(int index){
+        this.disciplinas.remove(index);
+    }
     
     @Override
     public boolean equals(Object obj) {
