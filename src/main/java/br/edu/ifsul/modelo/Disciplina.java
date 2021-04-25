@@ -34,41 +34,42 @@ import org.hibernate.validator.constraints.Length;
  */
 @Entity
 @Table(name = "disciplina")
-public class Disciplina implements Serializable{
+public class Disciplina implements Serializable {
+
     @Id
     @SequenceGenerator(name = "seq_disciplina", sequenceName = "seq_disciplinas_id", allocationSize = 1)
-    @GeneratedValue(generator = "seq_disciplina", strategy = GenerationType.SEQUENCE)   
+    @GeneratedValue(generator = "seq_disciplina", strategy = GenerationType.SEQUENCE)
     private Integer id;
     @NotBlank(message = "O nome não pode ser em branco")
     @Length(max = 50, message = "O nome não pode ter mais que {max} caracteres")
-    @Column(name = "nome", nullable = false, length = 50) 
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
-    @Column(name = "descricao", columnDefinition = "text",nullable = false)
+    @Column(name = "descricao", columnDefinition = "text", nullable = false)
     private String descricao;
     @NotNull(message = "a carga horaria deve ser informada")
     @Column(name = "carga_horaria", nullable = false, columnDefinition = "numeric(10,2)")
     private Double cargaHoraria;
-    @Column(name = "conhecimento_minimos", columnDefinition = "text",nullable = false)
+    @Column(name = "conhecimento_minimos", columnDefinition = "text", nullable = false)
     private String conhecimentosMinimos;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "alunos_matriculados", 
-            joinColumns = 
-                    @JoinColumn(name = "disciplina", referencedColumnName = "id", 
-                            nullable = false), 
-            inverseJoinColumns = 
-                    @JoinColumn(name = "aluno", referencedColumnName = "id", nullable = false))
-    private Set<Aluno> alunos=new HashSet<>();
-    @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL, 
+    @JoinTable(name = "alunos_matriculados",
+            joinColumns
+            = @JoinColumn(name = "disciplina", referencedColumnName = "id",
+                    nullable = false),
+            inverseJoinColumns
+            = @JoinColumn(name = "aluno", referencedColumnName = "id", nullable = false))
+    private Set<Aluno> alunos = new HashSet<>();
+    @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Nota> notas;
     @NotNull(message = "O curso deve ser informado")
     @ManyToOne
     @JoinColumn(name = "curso", referencedColumnName = "id", nullable = false)
     private Curso curso;
-    
+
     public Disciplina() {
     }
-    
+
     /**
      * @return the id
      */
@@ -152,15 +153,22 @@ public class Disciplina implements Serializable{
     public void setAlunos(Set<Aluno> alunos) {
         this.alunos = alunos;
     }
-    
+
     public void addAlunos(Aluno aluno) {
         this.alunos.add(aluno);
     }
-    
-    public void removerAluno(int index){
-        this.alunos.remove(index);
-    }
 
+    public void removerAluno(int index) {
+        int j = 0;
+        for (Aluno a : alunos) {
+            if (index == j) {
+                this.alunos.remove(a);
+                break;
+            } else {
+                j++;
+            }
+        }
+    }
 
     /**
      * @return the notas
@@ -175,14 +183,16 @@ public class Disciplina implements Serializable{
     public void setNotas(List<Nota> notas) {
         this.notas = notas;
     }
-    
+
     public void addNotas(Nota nota) {
         nota.setDisciplina(this);
         this.notas.add(nota);
     }
-    public void removerNotas(int index){
+
+    public void removerNotas(int index) {
         this.notas.remove(index);
     }
+
     /**
      * @return the curso
      */
@@ -221,5 +231,5 @@ public class Disciplina implements Serializable{
         }
         return true;
     }
-    
+
 }
