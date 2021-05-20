@@ -6,6 +6,7 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -61,7 +62,7 @@ public class Disciplina implements Serializable {
     private Set<Aluno> alunos = new HashSet<>();
     @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Nota> notas;
+    private List<Nota> notas = new ArrayList<>();
     @NotNull(message = "O curso deve ser informado")
     @ManyToOne
     @JoinColumn(name = "curso", referencedColumnName = "id", nullable = false)

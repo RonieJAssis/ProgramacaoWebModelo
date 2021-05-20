@@ -6,6 +6,7 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -62,7 +63,7 @@ public class Curso implements Serializable{
     private Instituicao instituicao;
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, 
             orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Disciplina> disciplinas;
+    private List<Disciplina> disciplinas = new ArrayList<>();
     
     public Curso() {
     }
